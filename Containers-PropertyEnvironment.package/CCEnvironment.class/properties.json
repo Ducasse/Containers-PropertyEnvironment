@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "StephaneDucasse 2/3/2018 10:07",
+	"super" : "Object",
+	"category" : "Containers-PropertyEnvironment",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"parent",
+		"properties"
+	],
+	"name" : "CCEnvironment",
+	"type" : "normal"
+}

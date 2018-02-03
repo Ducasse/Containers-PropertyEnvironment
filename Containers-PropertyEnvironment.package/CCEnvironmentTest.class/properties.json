@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Containers-PropertyEnvironment",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"potentialParentEnvironment",
+		"childEnvironment"
+	],
+	"name" : "CCEnvironmentTest",
+	"type" : "normal"
+}

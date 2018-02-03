@@ -1,0 +1,3 @@
+resources
+environmentClass
+	^ CCEnvironment
