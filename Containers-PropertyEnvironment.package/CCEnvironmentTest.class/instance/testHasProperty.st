@@ -1,4 +1,4 @@
-tests-local
+tests-testing
 testHasProperty
 	self connectChildParent.
 	self assert: (self childEnvironment hasPropertyAt: #P0inParent).

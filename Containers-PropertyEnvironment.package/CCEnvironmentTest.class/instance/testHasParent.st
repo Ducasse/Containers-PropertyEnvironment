@@ -1,4 +1,4 @@
-tests-local
+tests-testing
 testHasParent
 	self connectChildParent.
 	self deny: self potentialParentEnvironment hasParent.
