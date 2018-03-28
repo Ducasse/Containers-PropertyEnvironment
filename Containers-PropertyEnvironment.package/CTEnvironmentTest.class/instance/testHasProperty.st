@@ -1,5 +1,5 @@
 tests-testing
 testHasProperty
 	self connectChildParent.
-	self assert: (self childEnvironment hasPropertyAt: #P0inParent).
-	self assert: (self childEnvironment hasPropertyAt: #P1inChildren)
+	self assert: (self childEnvironment hasProperty: #P0inParent).
+	self assert: (self childEnvironment hasProperty: #P1inChildren)
