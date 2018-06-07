@@ -1,10 +1,5 @@
-accessing - properties
+conversion
 asFlatDictionary
-	"Answer all properties of the receiver and its parents."
+	"Answer a new  of the receiver and its parents."
 
-	| parentProperties |
-	parentProperties := self hasParent
-		ifTrue: [ self parent allProperties ]
-		ifFalse: [ Dictionary new ].
-	parentProperties addAll: self properties.
-	^ parentProperties
+	^ self flattenIn: Dictionary new
