@@ -1,4 +1,4 @@
-tests-lookup
+tests-lookup-properties
 testPropertyAtAlsoLooksUpInParent
 	self connectChildParent.
 	self

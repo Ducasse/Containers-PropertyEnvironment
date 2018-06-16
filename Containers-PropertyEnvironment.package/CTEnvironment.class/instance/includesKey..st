@@ -1,4 +1,10 @@
-testing
+testing-dictionary
 includesKey: aKey
 	"Answer true iff I (or one of my ancestors) contain a property named ==aKey==."
-	^ self hasProperty: aKey
+
+	^ self properties
+		at: aKey asSymbol
+		ifPresent: [ :value | true ]
+		ifAbsent: [ self hasParent
+				ifTrue: [ self parent includesKey: aKey ]
+				ifFalse: [ false ] ]
