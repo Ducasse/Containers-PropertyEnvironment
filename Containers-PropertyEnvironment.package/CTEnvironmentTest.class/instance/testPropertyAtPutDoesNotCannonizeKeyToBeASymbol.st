@@ -1,4 +1,4 @@
-tests-properties
+tests-lookup-properties
 testPropertyAtPutDoesNotCannonizeKeyToBeASymbol
 
 	self childEnvironment propertyAt: #foo put: 'bar'.

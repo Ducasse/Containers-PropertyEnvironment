@@ -9,6 +9,6 @@ testFromDictionary
 	
 	env := CTEnvironment fromDictionary: dict. 
 	
-	self assert: (env propertyAt: #first) equals: 1.
-	self assert: (env propertyAt: #second) equals: 2.
+	self assert: (env at: #first) equals: 1.
+	self assert: (env at: #second) equals: 2.
 	self deny: env hasParent.

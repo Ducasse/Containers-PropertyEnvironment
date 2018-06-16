@@ -1,4 +1,4 @@
-tests-properties
+tests-lookup-properties
 testPropertyAtIfAbsent
 
 	self assert: (self childEnvironment propertyAt: #foo put: 'bar') equals: 'bar'.

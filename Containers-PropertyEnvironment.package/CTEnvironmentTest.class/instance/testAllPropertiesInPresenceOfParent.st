@@ -12,5 +12,4 @@ testAllPropertiesInPresenceOfParent
 	allP := self potentialParentEnvironment allProperties keys.
 	allP
 		do: [ :each | 
-			self
-				assert: (#(#P0inParent #P1inChildren #configurations) includes: each) ]
+			self assert: (#(#P0inParent #P1inChildren #configurations) includes: each) ]

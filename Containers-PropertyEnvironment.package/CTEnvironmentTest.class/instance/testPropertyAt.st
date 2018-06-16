@@ -1,4 +1,4 @@
-tests-properties
+tests-lookup-properties
 testPropertyAt
 
 	self childEnvironment  propertyAt: #foo put: 'bar'.

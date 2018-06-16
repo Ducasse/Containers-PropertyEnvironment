@@ -1,4 +1,4 @@
-tests-properties
+tests-lookup-properties
 testPropertyAtIfAbsentDoesNotUseIfAbsentWhenPropertyIsDefinedInParent
 	self connectChildParent.
 	"since the property P0inParent is defined in parent do not execute the ifAbsent: clause."

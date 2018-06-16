@@ -7,5 +7,5 @@ testAtIfAbsentPut
 	self assert: (self childEnvironment at: #foo ifAbsentPut: [ 'baz' ]) equals: 'bar'.
 
 	"ifAbsentPut: set the property with the put value"
-	self assert: (self childEnvironment at: #bar ifAbsentPut: [ 'baz' ]) = 'baz'.
-	self assert: (self childEnvironment at: #bar) = 'baz'
+	self assert: (self childEnvironment at: #bar ifAbsentPut: [ 'baz' ]) equals: 'baz'.
+	self assert: (self childEnvironment at: #bar) equals: 'baz'

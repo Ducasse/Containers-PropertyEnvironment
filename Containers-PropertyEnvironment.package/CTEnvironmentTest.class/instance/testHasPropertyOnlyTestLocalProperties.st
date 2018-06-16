@@ -1,4 +1,4 @@
-tests-properties
+tests-lookup-properties
 testHasPropertyOnlyTestLocalProperties
 
 	self deny: (self childEnvironment hasLocalProperty: #foo).

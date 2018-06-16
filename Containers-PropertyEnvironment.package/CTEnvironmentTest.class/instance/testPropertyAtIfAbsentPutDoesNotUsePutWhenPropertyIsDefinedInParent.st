@@ -1,4 +1,4 @@
-tests-properties
+tests-lookup-properties
 testPropertyAtIfAbsentPutDoesNotUsePutWhenPropertyIsDefinedInParent
 	self connectChildParent.
 	self

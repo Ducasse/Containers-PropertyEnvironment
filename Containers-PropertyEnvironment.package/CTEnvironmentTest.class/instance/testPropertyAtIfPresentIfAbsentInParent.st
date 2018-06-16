@@ -1,4 +1,4 @@
-tests-properties
+tests-lookup-properties
 testPropertyAtIfPresentIfAbsentInParent
 	self connectChildParent.
 	self deny: (self childEnvironment hasLocalProperty: #P0inParent).
