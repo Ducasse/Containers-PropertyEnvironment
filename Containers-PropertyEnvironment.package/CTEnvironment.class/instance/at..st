@@ -6,5 +6,5 @@ at: aKey
 	^ properties
 		at: aKey asSymbol
 		ifAbsent: [ self hasParent
-				ifTrue: [ self parent at: aKey ]
+				ifTrue: [ parent at: aKey ]
 				ifFalse: [ self errorPropertyNotFound: aKey ] ]

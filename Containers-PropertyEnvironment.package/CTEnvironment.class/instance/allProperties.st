@@ -4,7 +4,8 @@ allProperties
 	"This method should be removed.... or at least should return a CTEnvironment"
 	| parentProperties |
 	parentProperties := self hasParent
-		ifTrue: [ self parent allProperties ]
+		ifTrue: [ parent allProperties ]
 		ifFalse: [ Dictionary new ].
 	parentProperties addAll: self properties.
+	"addAll: is not in the current API of environment"
 	^ parentProperties

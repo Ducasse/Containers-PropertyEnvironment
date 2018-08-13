@@ -1,3 +1,3 @@
 accessing
-parent: aConfiguration
-	parent := aConfiguration
+parent: anEnvironment
+	parent := anEnvironment

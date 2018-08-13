@@ -5,5 +5,5 @@ at: aKey ifAbsent: aBlock
 	^ properties
 		at: aKey asSymbol
 		ifAbsent: [ self hasParent
-				ifTrue: [ self parent at: aKey ifAbsent: aBlock ]
+				ifTrue: [ parent at: aKey ifAbsent: aBlock ]
 				ifFalse: aBlock ]
