@@ -1,5 +1,20 @@
 # Containers-PropertyEnvironment
-A kind of dictionary of properties with a lookup.
+A dictionary of properties with a lookup in ancestors (also called environment in other languages).
+
+```
+CTEnvironmentTest >> testChildrenPropertyAtOverridesParent [
+	self connectChildParent.
+	self
+		assert: (self childEnvironment propertyAt: #P0inParent)
+		equals: 50.
+	self
+		assert: (self childEnvironment propertyAt: #P1inChildren)
+		equals: 12.
+	self
+		assert: (self childEnvironment parent propertyAt: #P1inChildren)
+		equals: 24
+]
+```
 
 
 This package is part of the Containers project: This project is to collect, clean, 
