@@ -1,4 +1,7 @@
-# Pharo Containers-Grid
+# Containers-PropertyEnvironment
+A dictionary of properties with a lookup in ancestors (also called environment in other languages).
+
+
 [![Build Status](https://travis-ci.com/Ducasse/Containers-PropertyEnvironment.svg?branch=master)](https://travis-ci.com/Ducasse/Containers-PropertyEnvironment)
 [![Coverage Status](https://coveralls.io/repos/github//Ducasse/Containers-PropertyEnvironment/badge.svg?branch=master)](https://coveralls.io/github//Ducasse/Containers-Grid?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/PolyMathOrg/DataFrame/master/LICENSE)
@@ -7,8 +10,6 @@
 [![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
 <!-- [![Build status](https://ci.appveyor.com/api/projects/status/1wdnjvmlxfbml8qo?svg=true)](https://ci.appveyor.com/project/Ducasse/Containers-PropertyEnvironment)  -->
 
-# Containers-PropertyEnvironment
-A dictionary of properties with a lookup in ancestors (also called environment in other languages).
 
 ```
 CTEnvironmentTest >> testChildrenPropertyAtOverridesParent [
