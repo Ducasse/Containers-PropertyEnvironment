@@ -2,7 +2,7 @@ SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'ContainersPropertyEnvironment',
-      #directory : 'src',
+      #directory : '',
       #platforms : [ #pharo ]
     }
   ],
