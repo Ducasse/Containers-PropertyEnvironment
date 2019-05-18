@@ -10,6 +10,7 @@ A dictionary of properties with a lookup in ancestors (also called environment i
 [![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
 <!-- [![Build status](https://ci.appveyor.com/api/projects/status/1wdnjvmlxfbml8qo?svg=true)](https://ci.appveyor.com/project/Ducasse/Containers-PropertyEnvironment)  -->
 
+## Example
 
 ```
 CTEnvironmentTest >> testChildrenPropertyAtOverridesParent [
