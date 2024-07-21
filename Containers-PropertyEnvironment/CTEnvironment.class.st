@@ -10,16 +10,17 @@ For the moment keysDo: do not garantee any order. A possible improvement would b
 
 "
 Class {
-	#name : #CTEnvironment,
-	#superclass : #Object,
+	#name : 'CTEnvironment',
+	#superclass : 'Object',
 	#instVars : [
 		'parent',
 		'properties'
 	],
-	#category : 'Containers-PropertyEnvironment'
+	#category : 'Containers-PropertyEnvironment',
+	#package : 'Containers-PropertyEnvironment'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 CTEnvironment class >> childEnvironmentExample [
 	<sampleInstance>
 	^ self new
@@ -27,13 +28,13 @@ CTEnvironment class >> childEnvironmentExample [
 		propertyAt: #P2inChildren put: 13; yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 CTEnvironment class >> childEnvironmentWithParentExample [
 	<sampleInstance>
 	^ self childEnvironmentExample parent: self parentEnvironmentExample ; yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 CTEnvironment class >> fromDictionary: aDictionary [
 
 	| inst |
@@ -43,7 +44,7 @@ CTEnvironment class >> fromDictionary: aDictionary [
 	
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 CTEnvironment class >> parentEnvironmentExample [
 	<sampleInstance>
 	^ self new
@@ -51,7 +52,7 @@ CTEnvironment class >> parentEnvironmentExample [
 		propertyAt: #P0inParent put: 50 ; yourself
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 CTEnvironment >> allProperties [
 	"Answer all properties of the receiver and its parents."
 	"This method should be removed.... or at least should return a CTEnvironment"
@@ -64,14 +65,14 @@ CTEnvironment >> allProperties [
 	^ parentProperties
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 CTEnvironment >> asFlatDictionary [
 	"Answer a new  of the receiver and its parents."
 
 	^ self flattenIn: Dictionary new
 ]
 
-{ #category : #'accessing - dictionary' }
+{ #category : 'accessing - dictionary' }
 CTEnvironment >> at: aKey [
 	"Answer the value of the property ==aKey==, potentially looking in the parent, raises an error if the property doesn't exist."
 
@@ -83,7 +84,7 @@ CTEnvironment >> at: aKey [
 				ifFalse: [ self errorPropertyNotFound: aKey ] ]
 ]
 
-{ #category : #'accessing - dictionary' }
+{ #category : 'accessing - dictionary' }
 CTEnvironment >> at: aKey ifAbsent: aBlock [
 	"Answer the value of the property ==aKey==, potentially looking in parents, or the result of ==aBlock== if the property doesn't exist."
 
@@ -94,7 +95,7 @@ CTEnvironment >> at: aKey ifAbsent: aBlock [
 				ifFalse: aBlock ]
 ]
 
-{ #category : #'accessing - dictionary' }
+{ #category : 'accessing - dictionary' }
 CTEnvironment >> at: aKey ifAbsentPut: aBlock [
 	"Answer the value of the property ==aKey==, potentially defined in parents, or if the property doesn't exist adds and answers the result of evaluating ==aBlock==."
 
@@ -104,7 +105,7 @@ CTEnvironment >> at: aKey ifAbsentPut: aBlock [
 			ifFalse: [ self at: aKey put: aBlock value ]
 ]
 
-{ #category : #'accessing - dictionary' }
+{ #category : 'accessing - dictionary' }
 CTEnvironment >> at: aKey ifPresent: presentBlock ifAbsent: absentBlock [
 	"Answer the result of ==presentBlock== if I have the property ==aKey==, in the receiver or its parents or the result of ==absentBlock==."
 
@@ -113,27 +114,27 @@ CTEnvironment >> at: aKey ifPresent: presentBlock ifAbsent: absentBlock [
 			ifFalse: [ absentBlock value ]
 ]
 
-{ #category : #'accessing - dictionary' }
+{ #category : 'accessing - dictionary' }
 CTEnvironment >> at: aKey put: aValue [
 	"Adds or replaces the property ==aKey== with ==aValue== in the receiver."
 
 	^ properties at: aKey asSymbol put: aValue
 ]
 
-{ #category : #iteration }
+{ #category : 'iteration' }
 CTEnvironment >> do: aBlock [ 
 	"Evaluate aBlock for each of the receiver's values, starting from the receiver and going up in its parent chain if any."
 
 	self valuesDo: aBlock
 ]
 
-{ #category : #error }
+{ #category : 'error' }
 CTEnvironment >> errorPropertyNotFound: aKey [ 
 
 	KeyNotFound signal: aKey
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 CTEnvironment >> flattenIn: aDictionable [
 	"Answer a new aDictionable of the receiver and its parents."
 
@@ -143,19 +144,19 @@ CTEnvironment >> flattenIn: aDictionable [
 	^ aDictionable
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CTEnvironment >> hasLocalProperty: aKey [
 	"Test if the property ==aKey== is defined within the receiver, not checking potential parent."
 
 	^ properties includesKey: aKey asSymbol
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CTEnvironment >> hasParent [
-	^ parent notNil
+	^ parent isNotNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 CTEnvironment >> hasProperty: aKey [
 	"Answer true iff I (or one of my ancestors) contain a property named ==aKey==."
 
@@ -167,7 +168,7 @@ CTEnvironment >> hasProperty: aKey [
 				ifFalse: [ false ] ]
 ]
 
-{ #category : #'testing-dictionary' }
+{ #category : 'testing-dictionary' }
 CTEnvironment >> includesKey: aKey [
 	"Answer true iff I (or one of my ancestors) contain a property named ==aKey==."
 
@@ -179,20 +180,20 @@ CTEnvironment >> includesKey: aKey [
 				ifFalse: [ false ] ]
 ]
 
-{ #category : #'testing-dictionary' }
+{ #category : 'testing-dictionary' }
 CTEnvironment >> includesLocalKey: aKey [
 	"Test if the property ==aKey== is defined within the receiver, not checking potential parent."
 
 	^ properties includesKey: aKey asSymbol
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CTEnvironment >> initialize [
 	super initialize.
 	properties := OrderedDictionary new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CTEnvironment >> keys [
 	"Answer a Set containing the receiver's keys."
 	| s |
@@ -202,7 +203,7 @@ CTEnvironment >> keys [
 	^ s 
 ]
 
-{ #category : #iteration }
+{ #category : 'iteration' }
 CTEnvironment >> keysAndValuesDo: aBlock [ 
 	"Evaluate aBlock for each of the receiver's keys and values, starting from the receiver and going up in its parent chain if any."
 
@@ -211,7 +212,7 @@ CTEnvironment >> keysAndValuesDo: aBlock [
 	
 ]
 
-{ #category : #iteration }
+{ #category : 'iteration' }
 CTEnvironment >> keysDo: aBlock [ 
 	"Evaluate aBlock for each of the receiver's keys, starting from the receiver and going up in its parent chain if any."
 
@@ -220,19 +221,19 @@ CTEnvironment >> keysDo: aBlock [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CTEnvironment >> parent [
 	"A parent is a Configuration I extends"
 	
 	^ parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CTEnvironment >> parent: anEnvironment [
 	parent := anEnvironment
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 CTEnvironment >> postCopy [
 	"Make sure that properties are properly copied, but not the parent."
 	super postCopy.
@@ -240,27 +241,27 @@ CTEnvironment >> postCopy [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CTEnvironment >> properties [
 
 	^ properties
 ]
 
-{ #category : #'accessing - properties' }
+{ #category : 'accessing - properties' }
 CTEnvironment >> propertyAt: aKey [
 	"Answer the value of the property ==aKey==, potentially looking in the parent, raises an error if the property doesn't exist."
 
 	^ self at: aKey
 ]
 
-{ #category : #'accessing - properties' }
+{ #category : 'accessing - properties' }
 CTEnvironment >> propertyAt: aKey ifAbsent: aBlock [
 	"Answer the value of the property ==aKey==, potentially looking in parents, or the result of ==aBlock== if the property doesn't exist."
 
 	^ self at: aKey ifAbsent: aBlock
 ]
 
-{ #category : #'accessing - properties' }
+{ #category : 'accessing - properties' }
 CTEnvironment >> propertyAt: aKey ifAbsentPut: aBlock [
 	"Answer the value of the property ==aKey==, potentially defined in parents, or if the property doesn't exist adds and answers the result of evaluating ==aBlock==."
 
@@ -268,21 +269,21 @@ CTEnvironment >> propertyAt: aKey ifAbsentPut: aBlock [
 	^ self at: aKey ifAbsentPut: aBlock
 ]
 
-{ #category : #'accessing - properties' }
+{ #category : 'accessing - properties' }
 CTEnvironment >> propertyAt: aKey ifPresent: presentBlock ifAbsent: absentBlock [
 	"Answer the result of ==presentBlock== if I have the property ==aKey==, in the receiver or its parents or the result of ==absentBlock==."
 
 	^ self at: aKey ifPresent: presentBlock ifAbsent: absentBlock
 ]
 
-{ #category : #'accessing - properties' }
+{ #category : 'accessing - properties' }
 CTEnvironment >> propertyAt: aKey put: aValue [
 	"Adds or replaces the property ==aKey== with ==aValue== in the receiver."
 
 	^ self at: aKey put: aValue
 ]
 
-{ #category : #iteration }
+{ #category : 'iteration' }
 CTEnvironment >> valuesDo: aBlock [
 	"Evaluate aBlock for each of the receiver's values, starting from the receiver and going up in its parent chain if any."
 	

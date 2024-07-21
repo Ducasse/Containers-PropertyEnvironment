@@ -1,44 +1,45 @@
 Class {
-	#name : #CTEnvironmentTest,
-	#superclass : #TestCase,
+	#name : 'CTEnvironmentTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'potentialParentEnvironment',
 		'childEnvironment'
 	],
-	#category : 'Containers-PropertyEnvironment'
+	#category : 'Containers-PropertyEnvironment',
+	#package : 'Containers-PropertyEnvironment'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CTEnvironmentTest >> childEnvironment [
 	^ childEnvironment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CTEnvironmentTest >> childEnvironment: anObject [
 	childEnvironment := anObject
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 CTEnvironmentTest >> connectChildParent [
 	self childEnvironment parent: self potentialParentEnvironment
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 CTEnvironmentTest >> environmentClass [
 	^ CTEnvironment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CTEnvironmentTest >> potentialParentEnvironment [
 	^ potentialParentEnvironment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CTEnvironmentTest >> potentialParentEnvironment: anObject [
 	potentialParentEnvironment := anObject
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 CTEnvironmentTest >> setUp [
 	self childEnvironment: self environmentClass new.
 	self childEnvironment propertyAt: #P1inChildren put: 12.
@@ -48,7 +49,7 @@ CTEnvironmentTest >> setUp [
 	self potentialParentEnvironment propertyAt: #P0inParent put: 50
 ]
 
-{ #category : #'tests-properties' }
+{ #category : 'tests-properties' }
 CTEnvironmentTest >> testAllPropertiesInPresenceOfParent [
 	| allP |
 	self connectChildParent.
@@ -65,7 +66,7 @@ CTEnvironmentTest >> testAllPropertiesInPresenceOfParent [
 			self assert: (#(#P0inParent #P1inChildren #configurations) includes: each) ]
 ]
 
-{ #category : #'tests-properties' }
+{ #category : 'tests-properties' }
 CTEnvironmentTest >> testAllPropertiesWithoutInheritance [
 
 	| allP |
@@ -75,7 +76,7 @@ CTEnvironmentTest >> testAllPropertiesWithoutInheritance [
 	allP do: [ :each | self assert: (#(#P0inParent #P1inChildren #configurations) includes: each) ]
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAt [
 
 	self childEnvironment at: #foo put: 'bar'.
@@ -86,7 +87,7 @@ CTEnvironmentTest >> testAt [
 
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAtAlsoLooksUpInParent [
 	self connectChildParent.
 	self
@@ -94,7 +95,7 @@ CTEnvironmentTest >> testAtAlsoLooksUpInParent [
 		equals: 50
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAtIfAbsent [
 
 	self assert: (self childEnvironment at: #foo put: 'bar') equals: 'bar'.
@@ -102,7 +103,7 @@ CTEnvironmentTest >> testAtIfAbsent [
 	self assert: (self childEnvironment at: #bar ifAbsent: [ 'baz' ]) equals: 'baz'
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAtIfAbsentDoesNotUseIfAbsentWhenPropertyIsDefinedInParent [
 	self connectChildParent.
 	"since the property P0inParent is defined in parent do not execute the ifAbsent: clause."
@@ -112,7 +113,7 @@ CTEnvironmentTest >> testAtIfAbsentDoesNotUseIfAbsentWhenPropertyIsDefinedInPare
 	self assert: (self childEnvironment at: #Zork ifAbsent: [ true ])
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAtIfAbsentPut [
 	
 	self assert: (self childEnvironment at: #foo put: 'bar') equals: 'bar'.
@@ -125,7 +126,7 @@ CTEnvironmentTest >> testAtIfAbsentPut [
 	self assert: (self childEnvironment at: #bar) equals: 'baz'
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAtIfAbsentPutDoesNotUsePutWhenPropertyIsDefinedInParent [
 	self connectChildParent.
 	self
@@ -138,7 +139,7 @@ CTEnvironmentTest >> testAtIfAbsentPutDoesNotUsePutWhenPropertyIsDefinedInParent
 	self deny: (self potentialParentEnvironment includesLocalKey: #Zork)
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAtIfPresentIfAbsent [
 
 	self assert: (self childEnvironment at: #foo put: 'bar') equals: 'bar'.
@@ -156,7 +157,7 @@ CTEnvironmentTest >> testAtIfPresentIfAbsent [
 				ifAbsent: [ false ])
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAtIfPresentIfAbsentInParent [
 	self connectChildParent.
 	self deny: (self childEnvironment includesLocalKey: #P0inParent).
@@ -169,7 +170,7 @@ CTEnvironmentTest >> testAtIfPresentIfAbsentInParent [
 				ifAbsent: [ false ])
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testAtPutDoesNotCannonizeKeyToBeASymbol [
 
 	self childEnvironment at: #foo put: 'bar'.
@@ -184,7 +185,7 @@ CTEnvironmentTest >> testAtPutDoesNotCannonizeKeyToBeASymbol [
 	self assert: (self childEnvironment at: #'foo3String') equals: 'bar'.
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testChildrenAtOverridesParent [
 	self connectChildParent.
 	self
@@ -198,7 +199,7 @@ CTEnvironmentTest >> testChildrenAtOverridesParent [
 		equals: 24
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testChildrenPropertyAtOverridesParent [
 	self connectChildParent.
 	self
@@ -212,7 +213,7 @@ CTEnvironmentTest >> testChildrenPropertyAtOverridesParent [
 		equals: 24
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testChildrenPropertyOverridesParent [
 	self connectChildParent.
 	self
@@ -226,7 +227,7 @@ CTEnvironmentTest >> testChildrenPropertyOverridesParent [
 		equals: 24
 ]
 
-{ #category : #'tests-copy' }
+{ #category : 'tests-copy' }
 CTEnvironmentTest >> testCopyProperties [
 	"I'm here to test if postCopy is right."
 
@@ -235,7 +236,7 @@ CTEnvironmentTest >> testCopyProperties [
 	self deny: config properties == config copy properties
 ]
 
-{ #category : #'tests-iteration' }
+{ #category : 'tests-iteration' }
 CTEnvironmentTest >> testDoWhenNoParent [
 
 	| sum |
@@ -247,7 +248,7 @@ CTEnvironmentTest >> testDoWhenNoParent [
 	self assert: sum equals: 25.
 ]
 
-{ #category : #'tests-iteration' }
+{ #category : 'tests-iteration' }
 CTEnvironmentTest >> testDoWhenParent [
 	
 	| sum |
@@ -260,7 +261,7 @@ CTEnvironmentTest >> testDoWhenParent [
 	self assert: sum equals: 25 + 74
 ]
 
-{ #category : #'tests-properties' }
+{ #category : 'tests-properties' }
 CTEnvironmentTest >> testFromDictionary [
 
 	| dict env |
@@ -276,7 +277,7 @@ CTEnvironmentTest >> testFromDictionary [
 	self deny: env hasParent.
 ]
 
-{ #category : #'tests-testing' }
+{ #category : 'tests-testing' }
 CTEnvironmentTest >> testHasLocalProperty [
 
 	self deny: (self childEnvironment hasLocalProperty: #foo).
@@ -287,21 +288,21 @@ CTEnvironmentTest >> testHasLocalProperty [
 	self assert: (self potentialParentEnvironment hasLocalProperty: #P0inParent).
 ]
 
-{ #category : #'tests-testing' }
+{ #category : 'tests-testing' }
 CTEnvironmentTest >> testHasParent [
 	self connectChildParent.
 	self deny: self potentialParentEnvironment hasParent.
 	self assert: self childEnvironment hasParent
 ]
 
-{ #category : #'tests-testing' }
+{ #category : 'tests-testing' }
 CTEnvironmentTest >> testHasProperty [
 	self connectChildParent.
 	self assert: (self childEnvironment hasProperty: #P0inParent).
 	self assert: (self childEnvironment hasProperty: #P1inChildren)
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testHasPropertyOnlyTestLocalProperties [
 
 	self deny: (self childEnvironment hasLocalProperty: #foo).
@@ -312,7 +313,7 @@ CTEnvironmentTest >> testHasPropertyOnlyTestLocalProperties [
 	self assert: (self potentialParentEnvironment hasLocalProperty: #P0inParent).
 ]
 
-{ #category : #'tests-lookup-dictionary' }
+{ #category : 'tests-lookup-dictionary' }
 CTEnvironmentTest >> testIncludeKeyOnlyTestLocalProperties [
 
 	self deny: (self childEnvironment includesLocalKey: #foo).
@@ -323,7 +324,7 @@ CTEnvironmentTest >> testIncludeKeyOnlyTestLocalProperties [
 	self assert: (self potentialParentEnvironment includesLocalKey: #P0inParent).
 ]
 
-{ #category : #'tests-testing-dictionary' }
+{ #category : 'tests-testing-dictionary' }
 CTEnvironmentTest >> testIncludesKey [
 
 	self connectChildParent.
@@ -331,7 +332,7 @@ CTEnvironmentTest >> testIncludesKey [
 	self assert: (self childEnvironment includesKey: #P1inChildren)
 ]
 
-{ #category : #'tests-testing-dictionary' }
+{ #category : 'tests-testing-dictionary' }
 CTEnvironmentTest >> testIncludesLocalKey [
 
 	self deny: (self childEnvironment includesLocalKey: #foo).
@@ -342,7 +343,7 @@ CTEnvironmentTest >> testIncludesLocalKey [
 	self assert: (self potentialParentEnvironment includesLocalKey: #P0inParent).
 ]
 
-{ #category : #'tests-iteration' }
+{ #category : 'tests-iteration' }
 CTEnvironmentTest >> testKeysAndValuesDoWhenNoParent [
 	
 	| sum keys |
@@ -362,7 +363,7 @@ CTEnvironmentTest >> testKeysAndValuesDoWhenNoParent [
 	self assert: (keys includes: #P1inChildren).
 ]
 
-{ #category : #'tests-iteration' }
+{ #category : 'tests-iteration' }
 CTEnvironmentTest >> testKeysAndValuesDoWhenParent [
 	
 	| sum keys |
@@ -384,7 +385,7 @@ CTEnvironmentTest >> testKeysAndValuesDoWhenParent [
 	self assert: (keys includes: #P0inParent).
 ]
 
-{ #category : #'tests-iteration' }
+{ #category : 'tests-iteration' }
 CTEnvironmentTest >> testKeysWhenNoParent [
 
 	self assert: (self childEnvironment keys includes: #P1inChildren).
@@ -392,7 +393,7 @@ CTEnvironmentTest >> testKeysWhenNoParent [
 	self assert: self childEnvironment keys size equals: 2
 ]
 
-{ #category : #'tests-iteration' }
+{ #category : 'tests-iteration' }
 CTEnvironmentTest >> testKeysWhenParent [
 	"Keys of the parent should be returned too but without duplicates."
 	self connectChildParent.
@@ -402,13 +403,13 @@ CTEnvironmentTest >> testKeysWhenParent [
 	self assert: self childEnvironment keys size equals: 3
 ]
 
-{ #category : #'tests-properties' }
+{ #category : 'tests-properties' }
 CTEnvironmentTest >> testPropertiesIsNotNil [
-	self assert: self childEnvironment  properties notNil
+	self assert: self childEnvironment  properties isNotNil
 
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAt [
 
 	self childEnvironment  propertyAt: #foo put: 'bar'.
@@ -419,7 +420,7 @@ CTEnvironmentTest >> testPropertyAt [
 
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAtAlsoLooksUpInParent [
 	self connectChildParent.
 	self
@@ -427,7 +428,7 @@ CTEnvironmentTest >> testPropertyAtAlsoLooksUpInParent [
 		equals: 50
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAtIfAbsent [
 
 	self assert: (self childEnvironment propertyAt: #foo put: 'bar') equals: 'bar'.
@@ -435,7 +436,7 @@ CTEnvironmentTest >> testPropertyAtIfAbsent [
 	self assert: (self childEnvironment propertyAt: #bar ifAbsent: [ 'baz' ]) equals: 'baz'
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAtIfAbsentDoesNotUseIfAbsentWhenPropertyIsDefinedInParent [
 	self connectChildParent.
 	"since the property P0inParent is defined in parent do not execute the ifAbsent: clause."
@@ -445,7 +446,7 @@ CTEnvironmentTest >> testPropertyAtIfAbsentDoesNotUseIfAbsentWhenPropertyIsDefin
 	self assert: (self childEnvironment propertyAt: #Zork ifAbsent: [ true ])
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAtIfAbsentPut [
 	
 	self assert: (self childEnvironment propertyAt: #foo put: 'bar') equals: 'bar'.
@@ -458,7 +459,7 @@ CTEnvironmentTest >> testPropertyAtIfAbsentPut [
 	self assert: (self childEnvironment propertyAt: #bar) = 'baz'
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAtIfAbsentPutDoesNotUsePutWhenPropertyIsDefinedInParent [
 	self connectChildParent.
 	self
@@ -471,7 +472,7 @@ CTEnvironmentTest >> testPropertyAtIfAbsentPutDoesNotUsePutWhenPropertyIsDefined
 	self deny: (self potentialParentEnvironment hasLocalProperty: #Zork)
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAtIfPresentIfAbsent [
 
 	self assert: (self childEnvironment propertyAt: #foo put: 'bar') equals: 'bar'.
@@ -489,7 +490,7 @@ CTEnvironmentTest >> testPropertyAtIfPresentIfAbsent [
 				ifAbsent: [ false ])
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAtIfPresentIfAbsentInParent [
 	self connectChildParent.
 	self deny: (self childEnvironment hasLocalProperty: #P0inParent).
@@ -502,7 +503,7 @@ CTEnvironmentTest >> testPropertyAtIfPresentIfAbsentInParent [
 				ifAbsent: [ false ])
 ]
 
-{ #category : #'tests-lookup-properties' }
+{ #category : 'tests-lookup-properties' }
 CTEnvironmentTest >> testPropertyAtPutDoesNotCannonizeKeyToBeASymbol [
 
 	self childEnvironment propertyAt: #foo put: 'bar'.
@@ -517,7 +518,7 @@ CTEnvironmentTest >> testPropertyAtPutDoesNotCannonizeKeyToBeASymbol [
 	self assert: (self childEnvironment propertyAt: #'foo3String') equals: 'bar'.
 ]
 
-{ #category : #'tests-iteration' }
+{ #category : 'tests-iteration' }
 CTEnvironmentTest >> testValuesDoWhenNoParent [
 
 	| sum |
@@ -529,7 +530,7 @@ CTEnvironmentTest >> testValuesDoWhenNoParent [
 	self assert: sum equals: 25.
 ]
 
-{ #category : #'tests-iteration' }
+{ #category : 'tests-iteration' }
 CTEnvironmentTest >> testValuesDoWhenParent [
 	
 	| sum |
